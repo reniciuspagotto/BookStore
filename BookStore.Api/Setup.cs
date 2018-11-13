@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace BookStore.Api
 {
@@ -30,7 +31,15 @@ namespace BookStore.Api
 
         public static void ConfigureSwagger(this IServiceCollection services)
         {
-
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "Documentação API",
+                    Description = ""
+                });
+            });
         }
 
         public static void ConfigureDatabase(this IServiceCollection services, IConfiguration Configuration)

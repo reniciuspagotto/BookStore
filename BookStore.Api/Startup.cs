@@ -1,7 +1,6 @@
 ﻿using BookStore.Infra.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -31,6 +30,13 @@ namespace BookStore.Api
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
 
+            app.UseSwaggerUI(c =>
+            {
+                string Url = "/swagger/v1/swagger.json";
+                c.SwaggerEndpoint(Url, "API V1");
+            });
+
+            app.UseSwagger();
             app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials());
             app.ConfigureMigrations(context);
             app.UseMvc();
