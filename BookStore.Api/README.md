@@ -4,13 +4,13 @@
 docker pull mcr.microsoft.com/mssql/server:2017-latest
 ```
 
-# Create a user Windows
+# Create a container at Windows
 
 ```bash
 docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Book!1234" -p 1433:1433 --name book -d mcr.microsoft.com/mssql/server:2017-latest
 ```
 
-# Create a user MacOS
+# Create a container at MacOS
 
 ```bash
 sudo docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Book!1234' -p 1433:1433 --name book -d mcr.microsoft.com/mssql/server:2017-latest
@@ -19,9 +19,3 @@ sudo docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Book!1234' -p 1433:1433 --nam
 # More information
 
 https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-2017
-
-# Run Migrations
-
-```bash
-dotnet ef database update
-```
