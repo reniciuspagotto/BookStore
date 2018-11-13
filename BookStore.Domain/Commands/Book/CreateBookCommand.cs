@@ -6,7 +6,8 @@ namespace BookStore.Domain.Commands.Book
     public class CreateBookCommand : Notifiable, IValidatable
     {
         public string Name { get; set; }
-        public string Code { get; private set; }
+        public string Code { get; set; }
+        public bool Ativo { get; set; }
 
         public void Validate()
         {

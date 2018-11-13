@@ -8,7 +8,9 @@ namespace BookStore.Infra.Map
     {
         public void Configure(EntityTypeBuilder<Book> builder)
         {
-            throw new System.NotImplementedException();
+            builder.HasKey(p => p.Id);
+            builder.Property(p => p.Id);
+            builder.Property(p => p.Id);
         }
     }
 }

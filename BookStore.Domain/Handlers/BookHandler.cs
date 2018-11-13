@@ -28,7 +28,7 @@ namespace BookStore.Domain.Handlers
             if (command.Invalid)
                 return new ResponseResult("Erro ao inserir novo livro", false, null, command.Notifications);
 
-            var book = new Book(Guid.Empty, command.Name, command.Code);
+            var book = new Book(Guid.Empty, command.Name, command.Code, command.Ativo);
 
             _bookRepository.Save(book);
             _unitOfWork.Commit();
@@ -43,7 +43,7 @@ namespace BookStore.Domain.Handlers
             if (command.Invalid)
                 return new ResponseResult("Erro ao atualizar livro", false, null, command.Notifications);
 
-            var book = new Book(Guid.Parse(command.Id), command.Name, command.Code);
+            var book = new Book(Guid.Parse(command.Id), command.Name, command.Code, command.Ativo);
 
             _bookRepository.Update(book);
             _unitOfWork.Commit();

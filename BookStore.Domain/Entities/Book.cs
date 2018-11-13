@@ -5,12 +5,13 @@ namespace BookStore.Domain.Entities
 {
     public class Book : Entity
     {
-        public Book(Guid id, string name, string code)
+        public Book(Guid id, string name, string code, bool ativo)
         {
             NewOrSetIdEntity(id);
 
             Name = name;
             Code = code;
+            Ativo = ativo;
         }
 
         public string Name { get; private set; }
