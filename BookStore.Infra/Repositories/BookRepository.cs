@@ -24,22 +24,22 @@ namespace BookStore.Infra.Repositories
 
         public IEnumerable<Book> GetAll()
         {
-            return _context.Books.AsNoTracking().ToList().OrderBy(p => p.Title);
+            return _context.Books.AsNoTracking().ToList().Where(p => p.Ativo == true).OrderBy(p => p.Title);
         }
 
         public Book GetByCode(string code)
         {
-            return _context.Books.AsNoTracking().Where(p => p.Code.ToLower() == code.ToLower()).FirstOrDefault();
+            return _context.Books.AsNoTracking().Where(p => p.Code.ToLower() == code.ToLower() && p.Ativo == true).FirstOrDefault();
         }
 
         public Book GetByTitle(string title)
         {
-            return _context.Books.AsNoTracking().Where(p => p.Title.ToLower() == title.ToLower()).FirstOrDefault();
+            return _context.Books.AsNoTracking().Where(p => p.Title.ToLower() == title.ToLower() && p.Ativo == true).FirstOrDefault();
         }
 
         public Book GetByTitleAndCode(string title, string code)
         {
-            return _context.Books.AsNoTracking().Where(p => p.Title.ToLower() == title.ToLower() && p.Code.ToLower() == code.ToLower()).FirstOrDefault();
+            return _context.Books.AsNoTracking().Where(p => p.Title.ToLower() == title.ToLower() && p.Code.ToLower() == code.ToLower() && p.Ativo == true).FirstOrDefault();
         }
 
         public Book GetNoTracking(Guid id)
