@@ -5,7 +5,7 @@ namespace BookStore.Domain.Commands.Book
 {
     public class CreateBookCommand : Notifiable, IValidatable
     {
-        public string Name { get; set; }
+        public string Title { get; set; }
         public string Code { get; set; }
         public bool Ativo { get; set; }
 
@@ -13,7 +13,7 @@ namespace BookStore.Domain.Commands.Book
         {
             AddNotifications(
                 new Contract()
-                    .IsNotNullOrEmpty(Name, "Nome", "Informe o nome do livro")
+                    .IsNotNullOrEmpty(Title, "Nome", "Informe o nome do livro")
                     .IsNotNullOrEmpty(Code, "Código", "Informe o código do livro")
             );
         }

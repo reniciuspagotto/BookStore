@@ -4,6 +4,11 @@ namespace BookStore.Shared.RequestResponse
 {
     public class ResponseResult
     {
+        public ResponseResult()
+        {
+
+        }
+
         public ResponseResult(string message, bool success, object data = null, object errors = null)
         {
             Message = message;

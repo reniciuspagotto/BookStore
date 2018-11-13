@@ -11,7 +11,7 @@ namespace BookStore.Domain.Commands.Book
             AddNotifications(
                 new Contract()
                     .IsNotNullOrEmpty(Id, "Identificador", "Identificador não encontrado")
-                    .IsNotNullOrEmpty(Name, "Nome", "Informe o nome do livro")
+                    .IsNotNullOrEmpty(Title, "Nome", "Informe o nome do livro")
                     .IsNotNullOrEmpty(Code, "Código", "Informe o código do livro")
             );
         }
