@@ -3,6 +3,7 @@ using BookStore.Domain.Handlers;
 using BookStore.Domain.Repository;
 using BookStore.Shared.RequestResponse;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using System;
 
 namespace BookStore.Api.Controllers
@@ -13,11 +14,13 @@ namespace BookStore.Api.Controllers
     {
         private readonly BookHandler _bookHandler;
         private readonly IBookRepository _bookRepository;
+        private IMemoryCache _cache;
 
-        public BookController(BookHandler bookHandler, IBookRepository bookRepository)
+        public BookController(BookHandler bookHandler, IBookRepository bookRepository, IMemoryCache cache)
         {
             _bookHandler = bookHandler;
             _bookRepository = bookRepository;
+            _cache = cache;
         }
 
         [HttpPost]
@@ -41,14 +44,28 @@ namespace BookStore.Api.Controllers
         [HttpGet("{id}")]
         public ActionResult<ResponseResult> Get(Guid id)
         {
-            var data = _bookRepository.GetNoTracking(id);
+            var data = _cache.Get(id);
+
+            if (data is null)
+            {
+                data = _bookRepository.GetNoTracking(id);
+                _cache.Set(id, data, new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(10)));
+            }
+            
             return new ResponseResult("Operação realizada com sucesso", true, data);
         }
 
         [HttpGet]
         public ActionResult<ResponseResult> GetAll()
         {
-            var data = _bookRepository.GetAll();
+            var data = _cache.Get("Cache");
+
+            if (data is null)
+            {
+                data = _bookRepository.GetAll();
+                _cache.Set("Cache", data, new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(20)));
+            }
+
             return new ResponseResult("Operação realizada com sucesso", true, data);
         }
     }

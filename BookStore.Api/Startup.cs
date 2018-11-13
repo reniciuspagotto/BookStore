@@ -23,6 +23,7 @@ namespace BookStore.Api
             services.ConfigureHandlers();
             services.ConfigureServices();
             services.ConfigureSwagger();
+            services.ConfigureCache();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, DataContext context)

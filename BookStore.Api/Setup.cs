@@ -18,6 +18,11 @@ namespace BookStore.Api
             services.AddTransient<IBookRepository, BookRepository>();
         }
 
+        public static void ConfigureCache(this IServiceCollection services)
+        {
+            services.AddMemoryCache();
+        }
+
         public static void ConfigureHandlers(this IServiceCollection services)
         {
             services.AddTransient<BookHandler, BookHandler>();
