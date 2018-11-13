@@ -12,7 +12,7 @@ namespace BookStore.Api.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: true),
                     Code = table.Column<string>(nullable: true),
                     Ativo = table.Column<bool>(nullable: false)
                 },

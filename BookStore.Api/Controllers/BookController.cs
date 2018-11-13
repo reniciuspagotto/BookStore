@@ -35,7 +35,7 @@ namespace BookStore.Api.Controllers
             return _bookHandler.Handle(command);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public ActionResult<ResponseResult> Delete(Guid id)
         {
             return _bookHandler.Handle(new DeleteBookCommand { Id = id });

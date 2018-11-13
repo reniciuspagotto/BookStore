@@ -28,7 +28,7 @@ namespace BookStore.Api.Migrations
 
                     b.Property<string>("Code");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Title");
 
                     b.HasKey("Id");
 
