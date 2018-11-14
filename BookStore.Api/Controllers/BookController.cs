@@ -63,7 +63,7 @@ namespace BookStore.Api.Controllers
             if (data is null)
             {
                 data = _bookRepository.GetAll();
-                _cache.Set("Cache", data, new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(20)));
+                _cache.Set("Cache", data, new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(10)));
             }
 
             return new ResponseResult("Operação realizada com sucesso", true, data);
